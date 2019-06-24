@@ -18,6 +18,7 @@
 #include "muse.h"
 
 #define MACRO_1_STRING ""
+#define MACRO_2_STRING ""
 
 extern keymap_config_t keymap_config;
 
@@ -30,7 +31,8 @@ enum planck_layers {
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
-  CUSTOM1
+  CUSTOM1,
+  CUSTOM2
 };
 
 #define LOWER MO(_LOWER)
@@ -94,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust (Lower + Raise)
  * ,-----------------------------------------------------------------------------------.
- * |      | Reset|      |      |      |      |      |      |      |      |      |CUST_1|
+ * |      | Reset|      |      |      |      |      |      |      |      |CUST_2|CUST_1|
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |Aud on|Audoff|AGnorm|AGswap|Qwerty|      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -104,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI,  RGB_VAD, CUSTOM1,
+    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI,  CUSTOM2, CUSTOM1,
     _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  _______,  _______,  _______, _______,
     CK_TOGG, CK_UP,   CK_DOWN, MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______,  _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,  _______, _______
@@ -132,6 +134,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
    case CUSTOM1:
       if (record->event.pressed) {
         SEND_STRING(MACRO_1_STRING);
+      }
+      return false;
+      break;
+   case CUSTOM2:
+      if (record->event.pressed) {
+        SEND_STRING(MACRO_2_STRING);
       }
       return false;
       break;
