@@ -1,3 +1,6 @@
+## Firmware
+https://github.com/qmk/qmk_firmware
+
 ## Build
 `make planck/rev6:joecabezas`
 
